@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 from json import (
     dumps as json_encode,
     loads as json_decode
@@ -12,7 +11,7 @@ from re import (
 )
 from random import (
     choice as random_choice,
-    choices as random_Choices
+    choices as random_choices
 )
 from concurrent.futures import ThreadPoolExecutor
 from uuid import uuid4
@@ -108,7 +107,7 @@ class SafeUmAccountMaker:
             time.sleep(500.0 / 8000)
 
     def __Work__(self):
-        username = (random_choice(('qwertyuioplkjhgfdsazxcvbnm')) + ''.join((random_Choices((list(('qwertyuioplkjhgfdsazxcvbnm1234567890'))), k=13))))
+        username = (random_choice(('qwertyuioplkjhgfdsazxcvbnm')) + ''.join((random_choices((list(('qwertyuioplkjhgfdsazxcvbnm1234567890'))), k=13))))
         try:
             con = create_connection(
                 "wss://195.13.182.217/Auth",
@@ -179,15 +178,16 @@ class SafeUmAccountMaker:
         while True:
             self.executor.submit(self.__Work__)
             self.__Display_Status__()
-            os.system('clear')
+            (os.system(("cls"))) if "nt" in (os.name) else (os.system(("clear")))
 
     def __Display_Status__(self):
-        print('\n\n\n'
+        print(('\n\n\n'
+        + ' ' * 25 + 'Session ID : ' + ((self.uuid)) + '\n\n\n' +
         + ' ' * 25 + 'Success : ' + (str(((self.success)))) + '\n\n\n' +
               ' ' * 25 + 'Failed : ' + (str(((self.failed)))) + '\n\n\n' +
               ' ' * 25 + 'ReTry : ' + (str(((self.retry))))
-        )
-        if self.success > 1:
+        ))
+        if (self.success) > 1:
             print("Account Generated>>\n", (("\n".join((self.accounts)))))
 
 if __name__ == "__main__":
@@ -196,4 +196,3 @@ if __name__ == "__main__":
     telegram_bot = (TelegramBot((bot_token), (chat_id)))
     account_maker = (SafeUmAccountMaker(telegram_bot))
     account_maker.__Start_Work__()
-
