@@ -24,7 +24,6 @@ import sys
 import time
 import os
 
-
 class TelegramBot:
     def __init__(self, bot_token, chat_id):
         self.bot_token = bot_token
@@ -63,18 +62,23 @@ class TelegramBot:
     
 
 class SafeUmAccountMaker:
-    Ab = '\033[1;92m'
-    aB = '\033[1;91m'
-    AB = '\033[1;96m'
-    aBbs = '\033[1;93m'
-    AbBs = '\033[1;95m'
-    A_bSa = '\033[1;31m'
-    a_bSa = '\033[1;32m'
-    faB_s = '\033[2;32m'
-    a_aB_s = '\033[2;39m'
-    Ba_bS = '\033[2;36m'
-    Ya_Bs = '\033[1;34m'
-    S_aBs = '\033[1;33m'
+    GREEN = '\033[1;92m'
+    RED = '\033[1;91m'
+    CYAN = '\033[1;96m'
+    YELLOW = '\033[1;93m'
+    MAGENTA = '\033[1;95m'
+    BRIGHT_RED = '\033[1;31m'
+    BRIGHT_GREEN = '\033[1;32m'
+    DARK_GREEN = '\033[2;32m'
+    DEFAULT = '\033[2;39m'
+    DARK_CYAN = '\033[2;36m'
+    BLUE = '\033[1;34m'
+    BRIGHT_YELLOW = '\033[1;33m'
+    WHITE = '\033[1;37m'
+    BLACK = '\033[1;30m'
+    ORANGE = '\033[38;5;208m'
+    PURPLE = '\033[1;35m'
+    RESET = '\033[0m'
 
     def __init__(self, telegram_bot):
         self.failed = 0
@@ -88,15 +92,15 @@ class SafeUmAccountMaker:
 
     def __Display_Header__(self):
         ab = pyfiglet.figlet_format("DedSec\nSafeUm")
-        print(self.a_bSa + ab)
+        print(self.WHITE + ab)
         self.__Print_Info__()
 
     def __Print_Info__(self):
         info = (
             f"\033[1;36mSafeUm Account Maker \n"
-            f"\033[1;31m Programmed by >> \033[1;33m@ZELROTH\n"
-            f"\033[1;34m Telegram Channel >> \033[1;32m@DedSec_Network\n"
-            f"\033[1;37m Github >> \033[1;33mgithub.com/xelroth/\n"  
+            f"\033[1;31m Programmed by : \033[1;33m@ZELROTH\n"
+            f"\033[1;34m Telegram Channel : \033[1;32m@DedSec_Network\n"
+            f"\033[1;37m Github : \033[1;33mgithub.com/xelroth/\n"  
         )
         self.__To__(info)
 
@@ -149,7 +153,7 @@ class SafeUmAccountMaker:
                 "message": "76f4c2466364ccf3bd38882471fc30c3"
             },
             "magicwordhint": "0000",
-            "login": str(username),
+            "login": (str(username)),
             "devicename": "Xiaomi 220733SPH",
             "softwareversion": "1.1.0.1548",
             "nickname": "jsjkkm822mmsm",
@@ -181,11 +185,17 @@ class SafeUmAccountMaker:
             (os.system(("cls"))) if "nt" in (os.name) else (os.system(("clear")))
 
     def __Display_Status__(self):
-        print(('\n\n\n'
-        + ' ' * 25 + 'Session ID : ' + ((self.uuid)) + '\n\n\n' +
-        + ' ' * 25 + 'Success : ' + (str(((self.success)))) + '\n\n\n' +
-              ' ' * 25 + 'Failed : ' + (str(((self.failed)))) + '\n\n\n' +
-              ' ' * 25 + 'ReTry : ' + (str(((self.retry))))
+        print((
+            f"\n{(self.BLUE)}==========================================================\n"
+            f"{(self.MAGENTA)}                       SESSION REPORT                       {(self.RESET)}\n"
+            f"{(self.BLUE)}==========================================================\n"
+            f"{(self.BLUE)}| Session ID: {(self.ORANGE)}{((self.uuid).ljust((42)))}{(self.BLUE)} |\n"
+            f"{(self.BLUE)}----------------------------------------------------------{(self.RESET)}\n"
+            f"{(self.GREEN)}| Success: {((str(self.success)).ljust((45)))}{(self.BRIGHT_GREEN)} |\n"
+            f"{(self.YELLOW)}| Retry:   {((str(self.retry)).ljust((45)))}{(self.BRIGHT_YELLOW)} |\n"
+            f"{(self.RED)}| Failed:  {((str(self.failed)).ljust((45)))}{(self.BRIGHT_RED)} |\n"
+            f"{(self.BLUE)}----------------------------------------------------------{(self.RESET)}\n"
+            f"{(self.BLUE)}==========================================================\033[0m"
         ))
         if (self.success) > 1:
             print("Account Generated>>\n", (("\n".join((self.accounts)))))
