@@ -91,7 +91,7 @@ class SafeUmAccountMaker:
         self.__Display_Header__()
 
     def __Display_Header__(self):
-        ab = pyfiglet.figlet_format("DedSec\nSafeUm")
+        ab = (pyfiglet.figlet_format(("DedSec\nSafeUm")))
         print(self.WHITE + ab)
         self.__Print_Info__()
 
@@ -102,7 +102,7 @@ class SafeUmAccountMaker:
             f"\033[1;34m Telegram Channel : \033[1;32m@DedSec_Network\n"
             f"\033[1;37m Github : \033[1;33mgithub.com/xelroth/\n"  
         )
-        self.__To__(info)
+        self.__To__((info))
 
     def __To__(self, message):
         for char in message + "\n":
@@ -119,7 +119,7 @@ class SafeUmAccountMaker:
                     "app": "com.safeum.android",
                     "host": None,
                     "remoteIp": "195.13.182.217",
-                    "remotePort": str(8080),
+                    "remotePort": (str(8080)),
                     "sessionId": "b6cbb22d-06ca-41ff-8fda-c0ddeb148195",
                     "time": "2023-04-30 12:13:32",
                     "url": "wss://51.79.208.190/Auth"
@@ -128,7 +128,7 @@ class SafeUmAccountMaker:
             )
             con.send(json_encode((self.__Create_Registration_Payload__(username))))
             gzip_response = (decompress((con.recv())).decode('utf-8'))
-            self.__Handle_Response__(gzip_response, username)
+            self.__Handle_Response__(((gzip_response), (username)))
         except Exception:
             self.retry += 1
 
@@ -168,19 +168,19 @@ class SafeUmAccountMaker:
         if ('"status":"Success"') in response:
             self.success += 1
             self.accounts.append((username))
-            self.__Save_Account__(username)
+            self.__Save_Account__((username))
             print(f"Account Created: {username}")
-            telegram_bot.SendMessage((chat_id), (f"🎉 Account Created: {username}🎉\n"))
+            telegram_bot.SendMessage((chat_id), (f"🎉 Account Created: {(username)}🎉\n"))
         else:
             self.failed += 1
 
     def __Save_Account__(self, username):
-        with open(f"{self.uuid}_hits.txt", 'a') as f:
-            f.write(username + "\n")
+        with open((f"{(self.uuid)}_hits.txt", 'a')) as f:
+            f.write(((username) + "\n"))
 
     def __Start_Work__(self):
         while True:
-            self.executor.submit(self.__Work__)
+            self.executor.submit((self.__Work__))
             self.__Display_Status__()
             (os.system(("cls"))) if "nt" in (os.name) else (os.system(("clear")))
 
