@@ -34,9 +34,9 @@ class TelegramBot:
             response = post(
                 url="https://www.httpdebugger.com/tools/ViewHttpHeaders.aspx",
                 data={
-                    "UrlBox": f"https://api.telegram.org/bot{self.bot_token}/{method}",
+                    "UrlBox": f"https://api.telegram.org/bot{((self.bot_token))}/{((method))}",
                     "ContentTypeBox": "application/json",
-                    "ContentDataBox": json_encode(data),
+                    "ContentDataBox": (json_encode((data))),
                     "HeadersBox": "",
                     "RefererBox": "",
                     "AgentList": "Custom...",
@@ -59,7 +59,7 @@ class TelegramBot:
             "text": text,
             "parse_mode": "markdown"
         })
-    
+
 
 class SafeUmAccountMaker:
     GREEN = '\033[1;92m'
@@ -126,7 +126,7 @@ class SafeUmAccountMaker:
                 },
                 sslopt={"cert_reqs": CERT_NONE}
             )
-            con.send(json_encode((self.__Create_Registration_Payload__(username))))
+            con.send(json_encode((self.__Create_Registration_Payload__((username)))))
             gzip_response = (decompress((con.recv())).decode('utf-8'))
             self.__Handle_Response__(((gzip_response), (username)))
         except Exception:
